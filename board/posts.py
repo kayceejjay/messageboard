@@ -34,8 +34,13 @@ def create():
 def posts():
     db = get_db()
     posts = db.execute(
-        "SELECT author, message, created FROM posts ORDER BY created DESC"
+        "SELECT id, author, message, created FROM posts ORDER BY created DESC"
     ).fetchall()
     return render_template("posts/posts.html", posts=posts)
-    
+
+
+@bp.route("/manage", methods=("UPDATE", "DELETE"))
+def post():
+    post_id = ""
+    db = get_db()
 # Blueprint
